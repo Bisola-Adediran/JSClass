@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <meta name="viewpoint" content="width=device-width, initial-scale = 1">
+        <style>
+            body {
+                background-image: url(pig3.jpg);
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            .clock{
+                background-color:none;
+                background-blend-mode: saturation;
+                color:black;
+                letter-spacing: 10px;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                font-size: 70px;
+                box-sizing: content-box;
+         
+            }
+
+            .weekdays{
+                background-color:none;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                color: red;
+                letter-spacing: 10px;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                font-size: 50px;
+                transform:  translateX(-50%) translateY(-50%); 
+        }
+        </style>
+    </head>
+    <body>
+        <div id="Dclock" class="clock" onload="Time()"></div>
+        <div class="weekdays"><p id="wDays" onload="WeekDay()"></p></div>
+    </body>
+    <script>
+         function Time(){
+            var date = new Date();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            var session = "AM"
+            if( h ==0){
+                h = 12
+            }
+            if(h > 12){
+                h = h - 12;
+                session = "PM";
+            }
+            h = (h < 10)?"0" + h : h;
+            m = (m < 10)?"0" + m : m;
+            s = (s < 10)?"0" + s : s;
+            var time = h + ":" + m +":" + s + " " + session;
+            document.getElementById("Dclock").innerHTML = time;
+            document.getElementById("Dclock").textContent = time;
+            setTimeout(Time, 1000);
+        }
+            Time();
+
+           let mainDay = document.getElementById("wDays");
+           let getDate = new Date().getDay();
+           let day;
+            switch (getDate){
+                case 0: day = "Today is Sunday";
+                break;
+                case 1: day = "Today is Monday";
+                break;
+                case 2: day =  "Today is Tuesday";
+                break;
+                case 3: day =  "Today is Wednesday";
+                break;
+                case 4: day =  "Today is Thursday";
+                break;
+                case 5: day =  "Today is Friday";
+                break;
+                case 6: day =  "Today is Saturday";
+                break;  
+            } 
+            mainDay.innerHTML = day;
+
+        </script>
+</html>
+
+
+
+
